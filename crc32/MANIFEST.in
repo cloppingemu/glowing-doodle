@@ -1,0 +1,2 @@
+include libcrc32.so
+include __init__.py
