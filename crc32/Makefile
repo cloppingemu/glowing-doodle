@@ -11,11 +11,11 @@ uninstall: clean
 	../env/bin/python -m pip uninstall crc32
 
 
-lib: clean
+lib:
 	cc -c -Wall -Werror -fpic libcrc32.c -o libcrc32.o
 	cc -shared -o libcrc32.so libcrc32.o
 
-test: lib
+test:
 	# export LD_LIBRARY_PATH=$(realpath .)
 	cc -L . -Wall -o test.out tests/base.c -lcrc32
 
