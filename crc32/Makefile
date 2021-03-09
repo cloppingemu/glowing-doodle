@@ -1,3 +1,8 @@
+.PHONY: env
+env:
+	virtualenv ../env
+	../env/bin/python -m pip install -r ../requirements.txt
+
 sdist: lib
 	../env/bin/python setup.py sdist
 
