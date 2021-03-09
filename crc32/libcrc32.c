@@ -23,5 +23,5 @@ unsigned int CRC32Update(char* buffer, unsigned int size, unsigned int* table){
         c = *p;
         crc = (crc >> 8) ^ table[(crc & 0xff) ^ c];
     }
-    return crc;
+    return ~crc;
 }

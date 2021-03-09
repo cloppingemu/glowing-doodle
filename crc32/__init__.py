@@ -5,18 +5,15 @@ from functools import partial
 import ctypes as _ctypes
 import os.path as _path
 
-__all__ = ['hash_func', "CRC32Table"]
+__all__ = ['hash_func', "table"]
 
 crc32 = _ctypes.cdll.LoadLibrary(_so_path)
 
 crc32.CRC32Update.restype = _ctypes.c_uint
 
-_CRC32Table_length = 256
-CRC32Table = (_ctypes.c_uint * _CRC32Table_length)(*[0 for _ in range(_CRC32Table_length)])
+_table_size = 256
+table = (_ctypes.c_uint * _table_size)(*[0 for _ in range(_table_size)])
+crc32.FillTable(table)
 
-crc32.FillTable(CRC32Table)
-
-import pdb; pdb.set_trace()
-
-def hash_func(buffer):
-    return crc32.CRC32Update(buffer, len(buffer), CRC32Table)
+def hash(buffer):
+    return crc32.CRC32Update(buffer.encode(), len(buffer), table)

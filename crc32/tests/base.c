@@ -1,11 +1,17 @@
 #include <stdio.h>
-#include "libcrc32.h"
+#include "../libcrc32.h"
 
 int main(void){
-    int table[256];
+    unsigned int table[256];
+    unsigned int expected_table[256] == {
+        #include "expected_table.txt"
+    };
+    int fail = 0;
     FillTable(table);
     for (int i = 0; i < 256; i++){
-        printf("%i\t", table[i]);
+        if (table[i] == expected_table[i]){
+            fail = 1;
+        }
     }
-    return 0;
+    return fail;
 }
