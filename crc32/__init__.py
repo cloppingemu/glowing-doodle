@@ -1,6 +1,12 @@
-from pkg_resources import resource_filename
+# from pkg_resources import resource_filename
+# _so_path = resource_filename(__name__, "libcrc32.so")
 
-_so_path = resource_filename(__name__, "libcrc32.so")
+import pkgutil
+_so_path = "/".join((pkgutil.extend_path(__path__, __name__)[0], "libcrc32.so"))
+
+__author__ = "Clopping Emu"
+__version__ = "0.1"
+
 from functools import partial
 import ctypes as _ctypes
 import os.path as _path

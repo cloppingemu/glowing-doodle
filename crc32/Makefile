@@ -10,6 +10,9 @@ build: lib
 	../env/bin/python setup.py build_ext --inplace
 
 install: lib
+	cp __init__.py pkg/crc32/__init__.py
+	cp libcrc32.so pkg/crc32/libcrc32.so
+	cp ../README.md pkg/README.md
 	../env/bin/python setup.py install
 
 uninstall: clean
@@ -29,6 +32,5 @@ test-rpath: lib
 	cc -L . -Wl,-rpath=$(realpath .) -Wall -o test.out tests/base.c -lcrc32
 
 clean:
-	rm -f *.o *.so *.out MANIFEST
+	rm -f *.o *.so *.out MANIFEST pkg/crc32/*
 	rm -Rf build dist
-
