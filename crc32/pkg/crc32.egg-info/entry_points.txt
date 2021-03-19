@@ -1,3 +1,0 @@
-[console_scripts]
-resources-example = crc32:main
-
