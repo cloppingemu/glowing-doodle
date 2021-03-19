@@ -3,7 +3,7 @@
 **/*.out
 **/env/**
 **/__pycache__/**
-crc32/pkg/README.md
+crc32/pkg/**
 **/.vscode/**
 **/*.tar.gz
 **/*.whl
