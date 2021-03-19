@@ -3,3 +3,5 @@
 **/*.out
 **/env/**
 **/__pycache__/**
+crc32/pkg/README.md
+**/.vscode/**

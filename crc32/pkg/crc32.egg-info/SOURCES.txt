@@ -1,0 +1,11 @@
+MANIFEST.in
+pyproject.toml
+setup.cfg
+crc32/__init__.py
+crc32/libcrc32.so
+crc32.egg-info/PKG-INFO
+crc32.egg-info/SOURCES.txt
+crc32.egg-info/dependency_links.txt
+crc32.egg-info/entry_points.txt
+crc32.egg-info/requires.txt
+crc32.egg-info/top_level.txt

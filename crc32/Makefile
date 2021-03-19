@@ -2,18 +2,17 @@
 env:
 	virtualenv ../env
 	../env/bin/python -m pip install -r ../requirements.txt
-
-sdist: lib
-	../env/bin/python setup.py sdist
+	echo "conda deactivate" >> ../env/bin/activate
 
 build: lib
-	../env/bin/python setup.py build_ext --inplace
+	cp __init__.py pkg/crc32/__init__.py
+	cp libcrc32.so pkg/crc32/libcrc32.so
+	../env/bin/python -m build pkg -o pkg
 
 install: lib
 	cp __init__.py pkg/crc32/__init__.py
 	cp libcrc32.so pkg/crc32/libcrc32.so
 	cp ../README.md pkg/README.md
-	../env/bin/python setup.py install
 
 uninstall: clean
 	../env/bin/python -m pip uninstall crc32
@@ -32,5 +31,7 @@ test-rpath: lib
 	cc -L . -Wl,-rpath=$(realpath .) -Wall -o test.out tests/base.c -lcrc32
 
 clean:
-	rm -f *.o *.so *.out MANIFEST pkg/crc32/*
+	rm -Rf ../env
+	rm -f *.o *.so *.out MANIFEST pkg/crc32/* pkg/README.md
 	rm -Rf build dist
+	rm -Rf pkg/dist

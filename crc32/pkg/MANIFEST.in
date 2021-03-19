@@ -1,3 +1,2 @@
 include pyproject.toml
-recursive-include crc32 *.dat
-recursive-include crc32 *.txt
+recursive-include crc32 *.so
