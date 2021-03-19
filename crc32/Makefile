@@ -1,19 +1,18 @@
 .PHONY: env
-env:
+env: clean
 	virtualenv ../env
 	../env/bin/python -m pip install -r ../requirements.txt
-	echo "conda deactivate" >> ../env/bin/activate
 
-build: env, lib
+build: lib env
 	cp __init__.py pkg/crc32/__init__.py
 	cp libcrc32.so pkg/crc32/libcrc32.so
 	../env/bin/python -m build pkg -o pkg
 
-lib:
+lib: clean
 	cc -c -Wall -Werror -fpic libcrc32.c -o libcrc32.o
 	cc -shared -o libcrc32.so libcrc32.o
 
-test:
+test: lib
 	# export LD_LIBRARY_PATH=$(realpath .)
 	cc -L . -Wall -o test.out tests/base.c -lcrc32
 

@@ -5,3 +5,7 @@
 **/__pycache__/**
 crc32/pkg/README.md
 **/.vscode/**
+**/*.tar.gz
+**/*.whl
+**/build/*
+**/*.egg-info/**
