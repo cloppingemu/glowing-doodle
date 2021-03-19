@@ -1,4 +1,3 @@
-.PHONY: env
 env: clean
 	virtualenv ../env
 	../env/bin/python -m pip install -r ../requirements.txt
@@ -6,7 +5,10 @@ env: clean
 build: lib env
 	cp __init__.py pkg/crc32/__init__.py
 	cp libcrc32.so pkg/crc32/libcrc32.so
-	../env/bin/python -m build pkg -o pkg
+	../env/bin/python -m build pkg -o pkg -w
+
+install: build
+	../env/bin/python -m pip install pkg/crc*.whl
 
 lib: clean
 	cc -c -Wall -Werror -fpic libcrc32.c -o libcrc32.o
@@ -22,6 +24,6 @@ test-rpath: lib
 
 clean:
 	rm -Rf ../env
-	rm -f *.o *.so *.out MANIFEST pkg/crc32/* pkg/README.md pkg/*.tar.gz pkg/*.whl
+	rm -f *.o *.so *.out MANIFEST pkg/crc32/* pkg/README.md pkg/crc32*.tar.gz pkg/crc32*.whl
 	rm -Rf build dist
 	rm -Rf pkg/dist pkg/build pkg/*.egg-info
