@@ -9,3 +9,4 @@ crc32/pkg/**
 **/*.whl
 **/build/*
 **/*.egg-info/**
+crc32/pkg/crc32/**
