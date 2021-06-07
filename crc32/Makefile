@@ -19,13 +19,13 @@ lib: clean
 	cc -shared -o libcrc32.so libcrc32.o
 
 test: lib
-	echo "n\nest......\n\n"
-	# export LD_LIBRARY_PATH=$(realpath .)
+	echo "\ntest......\n\n"
+	# LD_LIBRARY_PATH=$(realpath .)
 	cc -L . -Wall -o test.out tests/base.c -lcrc32
 
 test-rpath: lib
 	# export LD_LIBRARY_PATH=$(realpath .)
-	cc -L . -Wl,-rpath=$(realpath .) -Wall -o test.out tests/base.c -lcrc32
+	cc -L . -Wall,-rpath=$(realpath .) -Wall -o test.out tests/base.c -lcrc32
 
 clean:
 	echo "\ncleaning......\n\n"
