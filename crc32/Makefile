@@ -20,7 +20,7 @@ lib: clean
 
 test: lib
 	echo "\ntest......\n\n"
-	# LD_LIBRARY_PATH=$(realpath .)
+	# LD_LIBRARY_PATH=$(realpath .); ./test.out
 	cc -L . -Wall -o test.out tests/base.c -lcrc32
 
 test-rpath: lib
