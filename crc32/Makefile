@@ -25,7 +25,7 @@ test: lib
 
 test-rpath: lib
 	# export LD_LIBRARY_PATH=$(realpath .)
-	cc -L . -Wall,-rpath=$(realpath .) -Wall -o test.out tests/base.c -lcrc32
+	cc -L . -Wl,-rpath=$(realpath .) -Wall -o test.out tests/base.c -lcrc32
 
 clean:
 	echo "\ncleaning......\n\n"
